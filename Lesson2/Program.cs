@@ -79,13 +79,16 @@ int max = Max(
 Console.WriteLine(max);
 */
 
+
 //Часть 4 (Example 10). Поиск определенного элемента массива, кот равен значению find.
+
+
 /*
 int[] array = { 1, 32, 11, 5, 4, 11, 7, 8 };
 
 int n = array.Length; //определили предел для счетчика
 
-int find = 111;
+int find = 11;
 int index = 0;
 
 while (index < n)
@@ -99,16 +102,64 @@ while (index < n)
 }
 */
 
-//Часть 5 (Example 11). Используем ген сл чисел, массивы в методах.
-void FillArray(int[] collection); //создаем новый метод с массивом внутри на месте аргумента.
+
+
+//Часть 5 (Example 11). Поиск определенного элемента массива, кот равен значению find,
+//но используем ген сл чисел, массивы в методах.
+
+
+
+
+void FillMassiv(int[] collection) //создаем новый метод с массивом внутри на месте аргумента.
 {
-    int leng = collection.Lenght;
-    
+    int length = collection.Length;
+    int index = 0;
+    while (index < length)
+    {
+        collection[index] = new Random().Next(1, 10);
+        //index = index + 1;
+        index++;
+
+
+    }
 
 }
+// void это методы, которые НЕ возвращают значения. А другие возвращают, например выше, где искали максимум трех чисел, там метод начинался просто с типа переменной (int) и возвращал значение для дальн использования видимо.
+void PrintMassiv(int[] col)
+{
+    int count = col.Length;
+    int position = 0;
+    while (position < count)
+    {
+        System.Console.WriteLine(col[position]);
+        position++;
+    }
+}
 
+int IndexOf(int[] collection2, int find)
+{
+    int count = collection2.Length;
+    int index = 0;
+    int position = -1; // -1 ставим, для того, чтобы идентифицировать результат, когда ни одного значения равного find нет, иначе если оставить 0, то это индекс первого значения массива.
 
+    while (index < count)
+    {
+        if (collection2[index] == find)
+        {
+            position = index;
+            break; //добавляем, чтобы после нахождения первого элемента, который равен find дальше поиск не шел.
+        }
+        index++;
+    }
+    return position;
+}
 
-int[] massiv = new int[10]; // конструкция new int[10] значит (дословно) "создать новый массив, в котором будет 10 элементов".
+int[] massiv = new int[10]; // конструкция new int[10] значит (примерно дословно) "создать новый массив, в котором будет 10 элементов".
 
+FillMassiv(massiv);
+PrintMassiv(massiv);
+Console.WriteLine();// вывод пустой строчки, чтобы в терминале не путаться с выводом массива (у нас же вон сначла выводится сгенерированный массив).
+
+int pos = IndexOf(massiv, 4);
+Console.WriteLine("Индекc первого элемента массива, который равен значению find это " + pos);
 
